@@ -12,7 +12,7 @@ const EMPTY: Omit<Contact, "id"> = {
 };
 
 const AMBITOS = ["", "Nacional", "Regional", "Local", "Centro educativo", "Internacional"].map(v => ({ value: v, label: v || "Ámbito" }));
-const MEDIOS = ["", "Correo", "Teléfono", "Formulario en su página web"].map(v => ({ value: v, label: v || "Medio de contacto" }));
+const MEDIOS = ["", "Correo", "Teléfono", "Correo y Teléfono", "Formulario en su página web"].map(v => ({ value: v, label: v || "Medio de contacto" }));
 const RESPUESTAS = ["", "Sí", "No", "Pendiente"].map(v => ({ value: v, label: v || "¿Se obtuvo respuesta?" }));
 const POSITIVAS = ["", "Sí", "No"].map(v => ({ value: v, label: v || "¿Info útil?" }));
 
