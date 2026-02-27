@@ -15,11 +15,11 @@ const BADGE_UTIL: Record<string, string> = {
 };
 
 const AMBITO_COLOR: Record<string, string> = {
-  "Nacional":         "bg-blue-700",
-  "Regional":         "bg-teal-600",
-  "Local":            "bg-slate-600",
   "Centro educativo": "bg-indigo-600",
-  "Internacional":    "bg-cyan-700",
+  "Local": "bg-slate-600",
+  "Regional": "bg-teal-600",
+  "Nacional": "bg-blue-700",
+  "Internacional": "bg-cyan-700"
 };
 
 interface Props {
@@ -29,9 +29,10 @@ interface Props {
   onSort: (f: SortField) => void;
   onEdit: (c: Contact) => void;
   onDelete: (id: string) => void;
+  authenticated: boolean;
 }
 
-export function ContactCards({ contacts, onEdit, onDelete }: Props) {
+export function ContactCards({ contacts, onEdit, onDelete, authenticated }: Props) {
   if (contacts.length === 0) {
     return (
       <div className="text-center py-20 text-gray-400">
@@ -144,14 +145,16 @@ export function ContactCards({ contacts, onEdit, onDelete }: Props) {
             </div>
 
             {/* Pie con acciones */}
-            <div className="px-5 py-3 border-t border-gray-100 flex justify-end gap-2 bg-gray-50/50">
-              <Button variant="ghost" size="sm" onClick={() => onEdit(c)}>
-                <Pencil size={13} /> Editar
-              </Button>
-              <Button variant="danger" size="sm" onClick={() => onDelete(c.id)}>
-                <Trash2 size={13} /> Eliminar
-              </Button>
-            </div>
+            {authenticated && (
+              <div className="px-5 py-3 border-t border-gray-100 flex justify-end gap-2 bg-gray-50/50">
+                <Button variant="ghost" size="sm" onClick={() => onEdit(c)}>
+                  <Pencil size={13} /> Editar
+                </Button>
+                <Button variant="danger" size="sm" onClick={() => onDelete(c.id)}>
+                  <Trash2 size={13} /> Eliminar
+                </Button>
+              </div>
+            )}
           </div>
         ))}
       </div>
